@@ -27,9 +27,7 @@ fi
 echo "解压资源中"
 echo "使用 bsdtar 解压$filename"
 bsdtar -xf $filename
-mkdir src
 mkdir pkg
-srcdir=src
 pkgdir=pkg
 tar -xJvf ./data.tar.xz -C "$pkgdir"
 find $pkgdir/opt/sogoupinyin/files/{.license,share} -type d -exec chmod 755 {} \;

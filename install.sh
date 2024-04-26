@@ -10,7 +10,7 @@ echo "正在尝试安装依赖"
 if [[ "$redhatsys" == "3" ]]; then
     pacman=yum
     sudo $pacman -y install wget epel-release
-    sudo $pacman -y install fcitx fcitx-qt5
+    sudo $pacman -y install fcitx fcitx-qt5 kcm-fcitx
     wget https://dl.fedoraproject.org/pub/fedora/linux/releases/39/Everything/x86_64/os/Packages/g/gsettings-qt-0-0.28.20180723bzr85.fc39.x86_64.rpm
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/f/fcitx-configtool-0.4.10-1.el7.x86_64.rpm
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm

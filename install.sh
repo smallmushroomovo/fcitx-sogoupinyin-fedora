@@ -13,6 +13,8 @@ if [[ "$redhatsys" == "3" ]]; then
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/f/fcitx-configtool-0.4.10-1.el7.x86_64.rpm
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm
     sudo dnf -y install ./*.rpm
+elif [[ "$redhatsys" == "2" ]]; then
+    sudo yum -y install wget epel-release
 else
     sudo dnf -y install fcitx fcitx-qt5 fcitx-configtool
 fi

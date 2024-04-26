@@ -8,10 +8,17 @@ on:
 
 jobs:
     Test:
-        runs-on: fedora
+        runs-on: ubuntu-22.04
+
+        strategy:
+            matrix:
+              os: [fedora-39, fedora-40]
         steps:
+            - name: Install requir packages
+              run: |
+                sudo dnf makecache
+                sudo dnf -y install wget
+                sudo dnf -y install tar
             - name: Test
               run: |
-                sudo dnf install wget
-                sudo dnf install tar
                 bash ./install_fedora_auto.sh

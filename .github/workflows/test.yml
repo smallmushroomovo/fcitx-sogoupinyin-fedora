@@ -10,10 +10,10 @@ jobs:
     Test:
         runs-on: ubuntu-22.04
 
-        strategy:
-            matrix:
-              os: [fedora-39, fedora-40]
         steps:
+            - name: Simulate Fedora
+              run: |
+                sudo ln -s /bin/apt /bin/dnf
             - name: Install requir packages
               run: |
                 echo $(rpm -E %rhel)

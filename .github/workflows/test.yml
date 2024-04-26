@@ -16,7 +16,6 @@ jobs:
                 sudo ln -s /bin/apt /bin/dnf
             - name: Install requir packages
               run: |
-                echo $(rpm -E %rhel)
                 sudo dnf makecache
                 sudo dnf -y install wget
                 sudo dnf -y install tar

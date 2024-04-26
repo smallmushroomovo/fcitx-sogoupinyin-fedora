@@ -17,12 +17,14 @@ if [[ "$redhatsys" == "3" ]]; then
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/f/fcitx-configtool-0.4.10-1.el7.x86_64.rpm
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm
     sudo $pacman -y install ./*.rpm
-    sudo $pacman -y install libXScrnSaver imsettings-gsettings qt5-qtsvg qt5-qtdeclarative libidn bsdtar
+    sudo $pacman -y install libXScrnSaver qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 elif [[ "$redhatsys" == "2" ]]; then
     pacman=yum
     sudo $pacman -y install wget epel-release
+    wget https://mirrors.ustc.edu.cn/opensuse/distribution/leap/15.5/repo/oss/x86_64/gsettings-qt-0.2-bp155.1.15.x86_64.rpm
+    wget https://mirrors.ustc.edu.cn/opensuse/distribution/leap/15.5/repo/oss/x86_64/libgsettings-qt1-0.2-bp155.1.15.x86_64.rpm
     sudo $pacman -y install fcitx fcitx-qt5 fcitx-configtool
-    sudo $pacman -y install libXScrnSaver imsettings-gsettings qt5-qtsvg qt5-qtdeclarative libidn bsdtar
+    sudo $pacman -y install libXScrnSaver qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 else
     pacman=dnf
     sudo $pacman -y install fcitx fcitx-qt5 fcitx-configtool
@@ -52,6 +54,8 @@ sudo cp -r $pkgdir/usr/* /usr
 sudo cp -r $pkgdir/etc/* /etc
 sudo cp -r $pkgdir/opt/* /opt
 echo "正在配置fcitx"
+sudo chmod 777 /etc/profile
+sudo cp /etc/profile ~/profile.bak
 sudo echo 'export GTK_IM_MODULE=fcitx' >> /etc/profile
 sudo echo 'export QT_IM_MODULE=fcitx' >> /etc/profile
 sudo echo 'export XMODIFIERS=@im=fcitx' >> /etc/profile
@@ -62,9 +66,9 @@ sudo ln -s /usr/lib64/libidn.so.12 /usr/lib64/libidn.so.11
 echo "安装完成"
 echo "正在创建卸载命令..."
 sudo cp ./uninstall.sh /bin/sogoupinyin-uninstall
-sudo chmod a+w /bin/sogoupinyin-uninstall
+sudo chmod 777 /bin/sogoupinyin-uninstall
 echo "创建完成"
-echo "您可以使用sogoupinyin-uninstall命令进行卸载"
+echo "您可以使用sudo sogoupinyin-uninstall命令进行卸载"
 echo "正在清除安装后无用的文件"
 rm sogou*.deb
 rm -rf pkg

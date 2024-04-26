@@ -20,7 +20,7 @@ bash ./install.sh
 ```
 ## 如何卸载？
 ```bash
-sogoupinyin-uninstall    #卸载时不会自动卸载依赖！
+sudo sogoupinyin-uninstall    #卸载时不会自动卸载依赖！
 ```
 ## 能在RHEL9上使用吗？
 RHEL 9因epel源中没有fcitx，故暂无法支持

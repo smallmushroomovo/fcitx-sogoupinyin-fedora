@@ -11,15 +11,16 @@ if [[ "$redhatsys" == "3" ]]; then
     pacman=yum
     sudo $pacman -y install wget epel-release
     sudo $pacman -y install fcitx fcitx-qt5
+    wget https://pkgs.sysadmins.ws/el8/base/x86_64/gsettings-qt-0-0.25.20180723bzr85.el8.x86_64.rpm
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/f/fcitx-configtool-0.4.10-1.el7.x86_64.rpm
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm
     sudo $pacman -y install ./*.rpm
-    sudo $pacman -y install lsb-release libXScrnSaver imsettings-gsettings qt5-qtsvg qt5-qtdeclarative libidn bsdtar
+    sudo $pacman -y install libXScrnSaver imsettings-gsettings qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 elif [[ "$redhatsys" == "2" ]]; then
     pacman=yum
     sudo $pacman -y install wget epel-release
     sudo $pacman -y install fcitx fcitx-qt5 fcitx-configtool
-    sudo $pacman -y install lsb-release libXScrnSaver imsettings-gsettings qt5-qtsvg qt5-qtdeclarative libidn bsdtar
+    sudo $pacman -y install libXScrnSaver imsettings-gsettings qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 else
     pacman=dnf
     sudo $pacman -y install fcitx fcitx-qt5 fcitx-configtool

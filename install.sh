@@ -60,6 +60,11 @@ sudo cp /usr/lib/x86_64-linux-gnu/fcitx/fcitx-sogoupinyin.so /usr/lib64/fcitx
 sudo ln -s /usr/lib/x86_64-linux-gnu/fcitx/fcitx-punc-ng.so /usr/lib64/fcitx-punc-ng.so
 sudo ln -s /usr/lib64/libidn.so.12 /usr/lib64/libidn.so.11
 echo "安装完成"
+echo "正在创建卸载命令..."
+sudo cp ./uninstall.sh /bin/sogoupinyin-uninstall
+sudo chmod a+w /bin/sogoupinyin-uninstall
+echo "创建完成"
+echo "您可以使用sogoupinyin-uninstall命令进行卸载"
 echo "正在清除安装后无用的文件"
 rm sogou*.deb
 rm -rf pkg

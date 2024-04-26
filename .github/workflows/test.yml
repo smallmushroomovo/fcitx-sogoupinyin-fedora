@@ -11,6 +11,7 @@ jobs:
         runs-on: ubuntu-22.04
 
         steps:
+            - uses: actions/checkout@v2
             - name: Simulate Fedora
               run: |
                 sudo ln -s /bin/apt /bin/dnf
@@ -20,6 +21,5 @@ jobs:
                 sudo dnf -y install tar
             - name: Test
               run: |
-                ls
-                sudo chmod a+w "./install_auto_fedora.sh"
-                bash "./install_auto_fedora.sh"
+                sudo chmod a+w "./install-auto-fedora.sh"
+                bash "./install-auto-fedora.sh"

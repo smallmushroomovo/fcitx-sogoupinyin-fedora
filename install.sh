@@ -8,17 +8,23 @@ echo "3.Red Hat Enterprise Linux 8/CentOS 8/Rocky Linux 8/Alma Linux 8"
 read -p "请选择您的系统：" redhatsys
 echo "正在尝试安装依赖"
 if [[ "$redhatsys" == "3" ]]; then
-    sudo dnf -y install wget epel-release
-    sudo dnf -y install fcitx fcitx-qt5
+    pacman=yum
+    sudo $pacman -y install wget epel-release
+    sudo $pacman -y install fcitx fcitx-qt5
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/f/fcitx-configtool-0.4.10-1.el7.x86_64.rpm
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm
-    sudo dnf -y install ./*.rpm
+    sudo $pacman -y install ./*.rpm
+    sudo $pacman -y install lsb-release libXScrnSaver gsettings-imsettings qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 elif [[ "$redhatsys" == "2" ]]; then
-    sudo yum -y install wget epel-release
+    pacman=yum
+    sudo $pacman -y install wget epel-release
+    sudo $pacman -y install fcitx fcitx-qt5 fcitx-configtool
+    sudo $pacman -y install lsb-release libXScrnSaver gsettings-imsettings qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 else
-    sudo dnf -y install fcitx fcitx-qt5 fcitx-configtool
+    pacman=dnf
+    sudo $pacman -y install fcitx fcitx-qt5 fcitx-configtool
+    sudo $pacman -y install lsb-release libXScrnSaver gsettings-qt qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 fi
-sudo dnf -y install lsb-release libXScrnSaver gsettings-qt qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 echo "下载资源中..."
 if [[ -f ./$filename ]]; then
     echo "$(gettext "找到 ")" "$filename"

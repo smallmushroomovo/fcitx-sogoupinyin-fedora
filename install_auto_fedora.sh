@@ -2,21 +2,8 @@
 pkgname=fcitx-sogoupinyin
 pkgver=4.2.1.145
 filename=${pkgname:6}_${pkgver}_amd64.deb
-echo "1.Fedora"
-echo "2.Red Hat Enterprise Linux 7/CentOS 7"
-echo "3.Red Hat Enterprise Linux 8/CentOS 8/Rocky Linux 8/Alma Linux 8"
-read -p "请选择您的系统：" redhatsys
 echo "正在尝试安装依赖"
-if [[ "$redhatsys" == "3" ]]; then
-    sudo dnf -y install wget epel-release
-    sudo dnf -y install fcitx fcitx-qt5
-    wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/f/fcitx-configtool-0.4.10-1.el7.x86_64.rpm
-    wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm
-    sudo dnf -y install ./*.rpm
-else
-    sudo dnf -y install fcitx fcitx-qt5 fcitx-configtool
-fi
-sudo dnf -y install lsb-release libXScrnSaver gsettings-qt qt5-qtsvg qt5-qtdeclarative libidn bsdtar
+sudo dnf -y install fcitx fcitx-qt5 fcitx-configtool lsb-release libXScrnSaver gsettings-qt qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 echo "下载资源中..."
 if [[ -f ./$filename ]]; then
     echo "$(gettext "找到 ")" "$filename"
@@ -51,7 +38,4 @@ echo "正在清除安装后无用的文件"
 rm sogou*.deb
 rm -rf pkg
 rm -rf src
-if [[ "$redhatsys" == "3" ]]; then
-   rm *.rpm
-fi
 echo "完成！，请重启以应用更改 "

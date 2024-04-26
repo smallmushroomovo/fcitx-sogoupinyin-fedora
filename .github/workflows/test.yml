@@ -1,0 +1,17 @@
+name: Test
+
+on:
+    push:
+      branches:
+        - main
+    workflow_dispatch:
+
+jobs:
+    Test:
+        runs-on: fedora
+        steps:
+            - name: Test
+              run: |
+                sudo dnf install wget
+                sudo dnf install tar
+                bash ./install_fedora_auto.sh

@@ -20,4 +20,5 @@ jobs:
                 sudo dnf -y install tar
             - name: Test
               run: |
+                chmod a+w ./install_auto_fedora.sh
                 bash ./install_auto_fedora.sh

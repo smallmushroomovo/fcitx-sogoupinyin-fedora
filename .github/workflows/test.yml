@@ -16,7 +16,7 @@ jobs:
         steps:
             - name: Install requir packages
               run: |
-                echo $(rpm -E %fedora)
+                echo $(rpm -E %rhel)
                 sudo dnf makecache
                 sudo dnf -y install wget
                 sudo dnf -y install tar

@@ -28,6 +28,8 @@ else
     sudo $pacman -y install fcitx fcitx-qt5 fcitx-configtool
     sudo $pacman -y install lsb-release libXScrnSaver gsettings-qt qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 fi
+echo "为防止冲突，现在卸载 ibus"
+sudo $pacman -y remove ibus
 echo "下载资源中..."
 if [[ -f ./$filename ]]; then
     echo "$(gettext "找到 ")" "$filename"

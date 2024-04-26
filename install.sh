@@ -12,8 +12,8 @@ if [[ "$redhatsys" == "3" ]]; then
     sudo $pacman -y install wget epel-release
     sudo $pacman makecache
     sudo $pacman -y install fcitx fcitx-qt5 kcm-fcitx
-    wget https://ftp.lysator.liu.se/pub/opensuse/distribution/leap/15.5/repo/oss/x86_64/gsettings-qt-0.2-bp155.1.15.x86_64.rpm
-    wget https://ftp.lysator.liu.se/pub/opensuse/distribution/leap/15.5/repo/oss/x86_64/libgsettings-qt1-0.2-bp155.1.15.x86_64.rpm
+    wget https://mirrors.ustc.edu.cn/opensuse/distribution/leap/15.5/repo/oss/x86_64/gsettings-qt-0.2-bp155.1.15.x86_64.rpm
+    wget https://mirrors.ustc.edu.cn/opensuse/distribution/leap/15.5/repo/oss/x86_64/libgsettings-qt1-0.2-bp155.1.15.x86_64.rpm
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/f/fcitx-configtool-0.4.10-1.el7.x86_64.rpm
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm
     sudo $pacman -y install ./*.rpm

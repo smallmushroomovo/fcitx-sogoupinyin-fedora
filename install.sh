@@ -37,7 +37,7 @@ if [[ -f ./$filename ]]; then
     echo "$(gettext "找到 ")" "$filename"
 else
     echo "$(gettext "正在下载 ")" "$filename ..."
-    wget https://ime-sec.gtimg.com/202404252201/8d87995ad8846c2eadd4a9660151cecb/pc/dl/gzindex/1680521603/sogoupinyin_4.2.1.145_amd64.deb -O ./$filename
+    wget https://store.deepinos.org.cn/store/office/sogoupinyin/sogoupinyin_4.2.1.145.1_amd64.deb -O ./$filename
 fi
 echo "解压资源中"
 echo "使用 bsdtar 解压$filename"

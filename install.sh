@@ -8,7 +8,7 @@ echo "3.Red Hat Enterprise Linux 8/CentOS 8(Stream)/Rocky Linux 8/Alma Linux 8"
 read -p "请选择您的系统：" redhatsys
 echo "正在尝试安装依赖"
 if [[ "$redhatsys" == "3" ]]; then
-    pacman=yum
+    pacman=yum                              #将包管理器设置为pacman变量好让编写上更加统一(用pacman是因为用Arch用习惯了)
     sudo $pacman -y install wget epel-release
     sudo $pacman makecache
     sudo $pacman -y install fcitx fcitx-qt5 kcm-fcitx
@@ -76,4 +76,5 @@ rm ./*.tar.xz
 if [[ "$redhatsys" == "3" ]]; then
    rm *.rpm                                       #删除手动下载的包(不是卸载)
 fi
+sudo $pacman -y remove bsdtar
 echo "完成！，请重启以应用更改 "

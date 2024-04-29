@@ -1,5 +1,5 @@
 #!/bin/bash
-read -p "确定要卸载吗？(y/N)" uninstall
+read -p "确定要卸载搜狗输入法吗？(y/N)" uninstall
 if [[ "$uninstall" == "y" ]]; then
    echo "正在删除链接的共享库..."
    sudo rm /usr/lib/x86_64-linux-gnu/fcitx/fcitx-sogoupinyin.so
@@ -14,6 +14,11 @@ if [[ "$uninstall" == "y" ]]; then
    sudo rm /usr/share/fcitx/addon/fcitx-sogou*.conf
    sudo rm /usr/share/fcitx/imicon/sogou*
    sudo rm /usr/share/fcitx/inputmethod/sogou*
+   read -p "是否删除依赖？(包括fcitx) (不建议) (y/N)" removedepends
+   if [[ "$removedepends" == "y" ]]; then
+      sudo dnf remove fcitx fcitx-qt5 kcm-fcitx libXScrnSaver qt5-qtsvg qt5-qtdeclarative libidn fcitx-configtool gsettings-qt libgsettings-qt unique
+   else
+      echo "不删除依赖"
    echo "卸载完成，请重启以应用更改"
 else
    exit

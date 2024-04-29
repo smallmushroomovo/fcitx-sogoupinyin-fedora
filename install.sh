@@ -59,10 +59,19 @@ sudo cp /etc/profile ~/profile.bak         #将准备要修改的/etc/profile备
 sudo echo 'export GTK_IM_MODULE=fcitx' >> /etc/profile
 sudo echo 'export QT_IM_MODULE=fcitx' >> /etc/profile
 sudo echo 'export XMODIFIERS=@im=fcitx' >> /etc/profile
-echo "正在链接共享库..."
+echo "正在复制与链接共享库..."
 sudo cp /usr/lib/x86_64-linux-gnu/fcitx/fcitx-sogoupinyin.so /usr/lib64/fcitx
-sudo ln -s /usr/lib/x86_64-linux-gnu/fcitx/fcitx-punc-ng.so /usr/lib64/fcitx-punc-ng.so
-sudo ln -s /usr/lib64/libidn.so.12 /usr/lib64/libidn.so.11
+if [[ -f /usr/lib64/fcitx-punc-ng.so ]]; then
+    echo "$(gettext "找到 ")" "/usr/lib64/fcitx-punc-ng.so ，无需链接"
+else
+    sudo ln -s /usr/lib/x86_64-linux-gnu/fcitx/fcitx-punc-ng.so /usr/lib64/fcitx-punc-ng.so
+fi
+
+if [[ -f /usr/lib64/libidn.so.11 ]]; then
+    echo "$(gettext "找到 ")" "/usr/lib64/libidn.so.11 ，无需链接"
+else
+    sudo ln -s /usr/lib64/libidn.so.12 /usr/lib64/libidn.so.11
+fi
 echo "安装完成"
 echo "正在创建卸载命令..."
 sudo cp ./uninstall.sh /bin/sogoupinyin-uninstall               #实质上是将卸载脚本复制到/bin目录下好让shell识别
@@ -72,9 +81,10 @@ echo "您可以使用sudo sogoupinyin-uninstall命令进行卸载"
 echo "正在清除安装后无用的文件"
 rm sogou*.deb
 rm -rf pkg
-rm ./*.tar.xz
+rm ./*.tar.*z
+rm ./debian-*
 if [[ "$redhatsys" == "3" ]]; then
    rm *.rpm                                       #删除手动下载的包(不是卸载)
 fi
-sudo $pacman -y remove bsdtar
+sudo $pacman -y remove bsdtar                     #卸载用于解压deb包的bsdtar
 echo "完成！，请重启以应用更改 "

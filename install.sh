@@ -80,12 +80,12 @@ if [[ -f "/usr/lib64/libidn.so.11" ]]; then
 else
     sudo ln -s /usr/lib64/libidn.so.12 /usr/lib64/libidn.so.11
 fi
-echo "安装完成"
-echo "正在复制卸载脚本..."
-sudo cp ./uninstall.sh /bin/sogoupinyin-uninstall
+echo "正在链接卸载脚本..."
+cp ./uninstall.sh ~/sogoupinyin-uninstall.sh
+sudo ln -s ~/sogoupinyin-uninstall.sh /bin/sogoupinyin-uninstall
 sudo chmod 777 /bin/sogoupinyin-uninstall
 echo "创建完成"
-echo "您可以使用sudo sogoupinyin-uninstall命令进行卸载"
+echo "您可以使用sogoupinyin-uninstall命令进行卸载"
 echo "正在清除安装后无用的文件"
 rm sogou*.deb
 rm -rf pkg

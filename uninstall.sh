@@ -17,7 +17,7 @@ if [[ "$uninstall" == "y" ]]; then
    sudo cp ~/profile.bak /etc/profile
    read -p "是否删除依赖？(包括fcitx) (不建议) (y/N)" removedepends
    if [[ "$removedepends" == "y" ]]; then
-      sudo dnf remove fcitx fcitx-qt5 kcm-fcitx libXScrnSaver qt5-qtsvg qt5-qtdeclarative libidn fcitx-configtool gsettings-qt unique
+      sudo dnf -y remove fcitx fcitx-qt5 kcm-fcitx libidn fcitx-configtool gsettings-qt
       echo "正在还原/etc/profile"
       sudo cp ~/profile.bak /etc/profile 
    else
@@ -26,7 +26,19 @@ if [[ "$uninstall" == "y" ]]; then
       pkill fcitx
    fi
 
-   echo "卸载完成，请重启以应用更改"
+   echo "卸载完成!"
+   echo "是否重启？"
+   echo "1) 是，我想立即重启"
+   echo "2) 否，我还有别的事要做"
+   read isreboot
+   if [[ "$isreboot" == "1" ]]; then
+	   reboot
+   elif [[ "$isreboot" == "2" ]]; then
+	   exit
+   else
+	   echo "请输入正确地数字！"
+	   echo "将不会重启"
+   fi
 else
    exit
 fi

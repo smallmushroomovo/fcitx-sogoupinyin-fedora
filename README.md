@@ -21,7 +21,7 @@ bash ./install.sh
 ```
 ## 如何卸载？
 ```bash
-sudo sogoupinyin-uninstall    #卸载时不会自动卸载依赖！
+sogoupinyin-uninstall    #请不要以root身份或使用sudo运行！这可能会导致系统灾难性的损坏！
 ```
 ## 具体支持什么系统？
  - Fedora 39:能正确地安装输入法与依赖
@@ -35,6 +35,7 @@ sudo sogoupinyin-uninstall    #卸载时不会自动卸载依赖！
 ## 声明
 本程序仅对于搜狗输入法的deb包做了相关处理以在RedHat/Fedora上安装，对于搜狗输入法本身没有任何修改
 ## 注意事项
+ - 请不要以root身份或使用sudo运行安装脚本或卸载脚本！这可能导致系统灾难性的损坏(旧版本不受影响)！
  - 该方法无法使用包管理器进行管理！因此您只能使用sogoupinyin-uninstall命令进行卸载
  - 安装时必须联网（这是当然）
  - 如果无法下载搜狗输入法deb包，请前往[官网](https://shurufa.sogou.com/linux)下载并复制到脚本目录

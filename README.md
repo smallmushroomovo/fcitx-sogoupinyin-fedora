@@ -1,6 +1,6 @@
 ## fcitx-sogoupinyin on RHEL/Fedora
 ## 这是什么？
-一个在RHEL/Fedora上安装搜狗输入法的sh脚本(基于[fcitx-sogoupinyin AUR包](https://aur.archlinux.org/packages/fcitx-sogoupinyin)的PKGBUILD修改)
+在RHEL/Fedora上安装搜狗输入法的Shell Script(基于[fcitx-sogoupinyin AUR包](https://aur.archlinux.org/packages/fcitx-sogoupinyin)的PKGBUILD修改)
 ## 如何安装？
  - 首先尝试更新系统
 ```bash

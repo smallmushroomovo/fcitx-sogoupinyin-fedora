@@ -8,30 +8,30 @@ echo "3.Red Hat Enterprise Linux 8/CentOS 8(Stream)/Rocky Linux 8/Alma Linux 8"
 read -p "请选择您的系统：" redhatsys
 echo "正在尝试安装依赖"
 if [[ "$redhatsys" == "3" ]]; then
-    pacman=yum                              #将包管理器设置为pacman变量好让编写上更加统一(用pacman是因为用Arch用习惯了)
-    sudo $pacman -y install wget epel-release
-    sudo $pacman makecache
-    sudo $pacman -y install fcitx fcitx-qt5 kcm-fcitx
+    pkgmanager=yum                              #将包管理器设置为pkgmanager变量好让编写上更加统一(用pkgmanager是因为用Arch用习惯了)
+    sudo $pkgmanager -y install wget epel-release
+    sudo $pkgmanager makecache
+    sudo $pkgmanager -y install fcitx fcitx-qt5 kcm-fcitx
     wget https://mirrors.ustc.edu.cn/opensuse/distribution/leap/15.5/repo/oss/x86_64/gsettings-qt-0.2-bp155.1.15.x86_64.rpm      #下载来自openSUSE的gsettings-qt
     wget https://mirrors.ustc.edu.cn/opensuse/distribution/leap/15.5/repo/oss/x86_64/libgsettings-qt1-0.2-bp155.1.15.x86_64.rpm
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/f/fcitx-configtool-0.4.10-1.el7.x86_64.rpm       #下载来自于RHEL 7的fcitx-configttol
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm                 #下载fcitx
-    sudo $pacman -y install ./*.rpm                                                                         #安装不在源里的依赖包
-    sudo $pacman -y install libXScrnSaver qt5-qtsvg qt5-qtdeclarative libidn bsdtar                         #安装其他在epel源里的依赖包(bsdtar用于解压deb包)
+    sudo $pkgmanager -y install ./*.rpm                                                                         #安装不在源里的依赖包
+    sudo $pkgmanager -y install libXScrnSaver qt5-qtsvg qt5-qtdeclarative libidn bsdtar                         #安装其他在epel源里的依赖包(bsdtar用于解压deb包)
 elif [[ "$redhatsys" == "2" ]]; then
-    pacman=yum
-    sudo $pacman -y install wget epel-release
+    pkgmanager=yum
+    sudo $pkgmanager -y install wget epel-release
     wget https://mirrors.ustc.edu.cn/opensuse/distribution/leap/15.5/repo/oss/x86_64/gsettings-qt-0.2-bp155.1.15.x86_64.rpm
     wget https://mirrors.ustc.edu.cn/opensuse/distribution/leap/15.5/repo/oss/x86_64/libgsettings-qt1-0.2-bp155.1.15.x86_64.rpm
-    sudo $pacman -y install fcitx fcitx-qt5 fcitx-configtool
-    sudo $pacman -y install libXScrnSaver qt5-qtsvg qt5-qtdeclarative libidn bsdtar
+    sudo $pkgmanager -y install fcitx fcitx-qt5 fcitx-configtool
+    sudo $pkgmanager -y install libXScrnSaver qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 else
-    pacman=dnf
-    sudo $pacman -y install fcitx fcitx-qt5 fcitx-configtool
-    sudo $pacman -y install lsb-release libXScrnSaver gsettings-qt qt5-qtsvg qt5-qtdeclarative libidn bsdtar
+    pkgmanager=dnf
+    sudo $pkgmanager -y install fcitx fcitx-qt5 fcitx-configtool
+    sudo $pkgmanager -y install lsb-release libXScrnSaver gsettings-qt qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 fi
 echo "为防止冲突，现在卸载 ibus"
-sudo $pacman -y remove ibus
+sudo $pkgmanager -y remove ibus
 echo "下载资源中..."
 if [[ -f ./$filename ]]; then
     echo "$(gettext "找到 ")" "$filename"
@@ -86,5 +86,5 @@ rm ./debian-*
 if [[ "$redhatsys" == "3" ]]; then
    rm *.rpm                                       #删除手动下载的包(不是卸载)
 fi
-sudo $pacman -y remove bsdtar                     #卸载用于解压deb包的bsdtar
+sudo $pkgmanager -y remove bsdtar                     #卸载用于解压deb包的bsdtar
 echo "完成！，请重启以应用更改 "

@@ -22,12 +22,17 @@ bash ./install.sh
 ```bash
 sudo sogoupinyin-uninstall    #卸载时不会自动卸载依赖！
 ```
-## 能在RHEL9上使用吗？
-RHEL 9因epel源中没有fcitx，故暂无法支持
+## 具体支持什么系统？
+ - Fedora 39:能正确地安装输入法与依赖
+ - Fedora 40:未测试，理论上能够正常工作
+ - Red Hat Enterprise Linux 8/CentOS Linux 8/Rocky Linux 8/Alma Linux 8:能正确地安装输入法与依赖(部分依赖来自于其它操作系统的源，但能正常工作)
+ - Red Hat Enterprise Linux 7/CentOS Linux 7:理论上支持，未测试
+ - Red Hat Enterprise Linux 9/Rocky Linux 9/Alma Linux 9:由于epel 9中没有fcitx及相关组件，无法正常安装
+ - CentOS Stream:未知
 ## License
 [MIT License](https://github.com/SmallMushroom-offical/fcitx-sogoupinyin-rhel/blob/main/LICENSE)
 ## 声明
-本程序仅删除了少数配置文件，对于搜狗输入法本身没有任何修改
+本程序仅对于搜狗输入法的deb包做了相关处理以在RedHat/Fedora上安装，对于搜狗输入法本身没有任何修改
 ## 注意事项
  - 该方法无法使用包管理器进行管理！因此您只能使用sogoupinyin-uninstall命令进行卸载
  - 安装时必须联网（这是当然）

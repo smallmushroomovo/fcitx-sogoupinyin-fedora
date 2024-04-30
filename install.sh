@@ -60,9 +60,10 @@ echo "正在复制资源..."
 sudo cp -r $pkgdir/usr/* /usr
 sudo cp -r $pkgdir/etc/* /etc
 sudo cp -r $pkgdir/opt/* /opt
-echo "正在配置fcitx"
 sudo chmod 777 /etc/profile
+echo "正在备份/etc/profile"
 sudo cp /etc/profile ~/profile.bak         #将准备要修改的/etc/profile备份到home目录下的profile.bak
+echo "正在配置fcitx"
 sudo echo 'export GTK_IM_MODULE=fcitx' >> /etc/profile
 sudo echo 'export QT_IM_MODULE=fcitx' >> /etc/profile
 sudo echo 'export XMODIFIERS=@im=fcitx' >> /etc/profile

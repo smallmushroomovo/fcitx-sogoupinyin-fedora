@@ -14,9 +14,12 @@ if [[ "$uninstall" == "y" ]]; then
    sudo rm /usr/share/fcitx/addon/fcitx-sogou*.conf
    sudo rm /usr/share/fcitx/imicon/sogou*
    sudo rm /usr/share/fcitx/inputmethod/sogou*
+   sudo cp ~/profile.bak /etc/profile
    read -p "是否删除依赖？(包括fcitx) (不建议) (y/N)" removedepends
    if [[ "$removedepends" == "y" ]]; then
-      sudo dnf remove fcitx fcitx-qt5 kcm-fcitx libXScrnSaver qt5-qtsvg qt5-qtdeclarative libidn fcitx-configtool gsettings-qt libgsettings-qt unique
+      sudo dnf remove fcitx fcitx-qt5 kcm-fcitx libXScrnSaver qt5-qtsvg qt5-qtdeclarative libidn fcitx-configtool gsettings-qt unique
+      echo "正在还原/etc/profile"
+      sudo cp ~/profile.bak /etc/profile 
    else
       echo "不删除依赖"
       echo "正在关闭fcitx.."

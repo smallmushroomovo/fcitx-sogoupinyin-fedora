@@ -68,13 +68,13 @@ sudo echo 'export QT_IM_MODULE=fcitx' >> /etc/profile
 sudo echo 'export XMODIFIERS=@im=fcitx' >> /etc/profile
 echo "正在复制与链接共享库..."
 sudo cp /usr/lib/x86_64-linux-gnu/fcitx/fcitx-sogoupinyin.so /usr/lib64/fcitx
-if [[ -f /usr/lib64/fcitx-punc-ng.so ]]; then
+if [[ -f "/usr/lib64/fcitx-punc-ng.so" ]]; then
     echo "$(gettext "找到 ")" "/usr/lib64/fcitx-punc-ng.so ，无需链接"
 else
     sudo ln -s /usr/lib/x86_64-linux-gnu/fcitx/fcitx-punc-ng.so /usr/lib64/fcitx-punc-ng.so
 fi
 
-if [[ -f /usr/lib64/libidn.so.11 ]]; then
+if [[ -f "/usr/lib64/libidn.so.11" ]]; then
     echo "$(gettext "找到 ")" "/usr/lib64/libidn.so.11 ，无需链接"
 else
     sudo ln -s /usr/lib64/libidn.so.12 /usr/lib64/libidn.so.11
@@ -94,4 +94,17 @@ if [[ "$redhatsys" == "3" ]]; then
    rm *.rpm                                       #删除手动下载的包(不是卸载)
 fi
 sudo $pkgmanager -y remove bsdtar                     #卸载用于解压deb包的bsdtar
-echo "完成！，请重启以应用更改 "
+echo "安装完成！"
+echo "是否重启？"
+echo "1) 是，我想立刻重启"
+echo "2) 否，我还有些事情要做"
+read isreboot
+if [[ "$isreboot" == "1" ]]; then
+	reboot
+elif [[ "$isreboot" == "2" ]]; then
+	echo "请在合适的时间重启"
+else
+	echo "请输入合适的数字！"
+	echo "将不会重启"
+fi
+

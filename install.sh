@@ -8,7 +8,7 @@ echo "3.Red Hat Enterprise Linux 8/CentOS 8(Stream)/Rocky Linux 8/Alma Linux 8"
 read -p "请选择您的系统：" redhatsys
 echo "正在尝试安装依赖"
 if [[ "$redhatsys" == "3" ]]; then
-    pkgmanager=yum                              #将包管理器设置为pkgmanager变量好让编写上更加统一(用pkgmanager是因为用Arch用习惯了)
+    pkgmanager=yum
     sudo $pkgmanager -y install wget epel-release
     sudo $pkgmanager makecache
     sudo $pkgmanager -y install fcitx fcitx-qt5 kcm-fcitx
@@ -30,8 +30,15 @@ else
     sudo $pkgmanager -y install fcitx fcitx-qt5 fcitx-configtool
     sudo $pkgmanager -y install lsb-release libXScrnSaver gsettings-qt qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 fi
-echo "为防止冲突，现在卸载 ibus"
-sudo $pkgmanager -y remove ibus
+
+read -p "是否卸载ibus？如果不卸载，可能会发生冲突" removeibus
+if [[ "$removeibus" == "y" ]]; then
+	sudo $pkgmanager -y remove ibus
+	echo "卸载完成"
+else
+	echo "不卸载ibus"
+	echo "如有任何问题请自行承担！"
+fi
 echo "下载资源中..."
 if [[ -f ./$filename ]]; then
     echo "$(gettext "找到 ")" "$filename"
@@ -73,8 +80,8 @@ else
     sudo ln -s /usr/lib64/libidn.so.12 /usr/lib64/libidn.so.11
 fi
 echo "安装完成"
-echo "正在创建卸载命令..."
-sudo cp ./uninstall.sh /bin/sogoupinyin-uninstall               #实质上是将卸载脚本复制到/bin目录下好让shell识别
+echo "正在复制卸载脚本..."
+sudo cp ./uninstall.sh /bin/sogoupinyin-uninstall
 sudo chmod 777 /bin/sogoupinyin-uninstall
 echo "创建完成"
 echo "您可以使用sudo sogoupinyin-uninstall命令进行卸载"

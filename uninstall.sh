@@ -37,7 +37,7 @@ if [[ "$uninstall" == "y" ]]; then
    elif [[ "$isreboot" == "2" ]]; then
 	   exit
    else
-	   echo "请输入正确地数字！"
+	   echo "请输入正确的数字！"
 	   echo "将不会重启"
    fi
 else

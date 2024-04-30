@@ -15,7 +15,7 @@ if [[ "$redhatsys" == "3" ]]; then
     wget https://mirrors.ustc.edu.cn/opensuse/distribution/leap/15.5/repo/oss/x86_64/gsettings-qt-0.2-bp155.1.15.x86_64.rpm      #下载来自openSUSE的gsettings-qt
     wget https://mirrors.ustc.edu.cn/opensuse/distribution/leap/15.5/repo/oss/x86_64/libgsettings-qt1-0.2-bp155.1.15.x86_64.rpm
     wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/f/fcitx-configtool-0.4.10-1.el7.x86_64.rpm       #下载来自于RHEL 7的fcitx-configttol
-    wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm                 #下载fcitx
+    wget https://mirrors.nju.edu.cn/epel/7/x86_64/Packages/u/unique-1.1.6-10.el7.x86_64.rpm                 #下载fcitx-configtool的依赖
     sudo $pkgmanager -y install ./*.rpm                                                                         #安装不在源里的依赖包
     sudo $pkgmanager -y install libXScrnSaver qt5-qtsvg qt5-qtdeclarative libidn bsdtar                         #安装其他在epel源里的依赖包(bsdtar用于解压deb包)
 elif [[ "$redhatsys" == "2" ]]; then
@@ -44,13 +44,13 @@ if [[ -f ./$filename ]]; then
     echo "$(gettext "找到 ")" "$filename"
 else
     echo "$(gettext "正在下载 ")" "$filename ..."
-    wget https://zunyun01.store.deepinos.org.cn/store/office/sogoupinyin/sogoupinyin_4.2.1.145.1_amd64.deb -O ./$filename        #这里在原PKGBUILD中使用了官网的下载链接，这里换了星火商店的源
+    wget https://zunyun01.store.deepinos.org.cn/store/office/sogoupinyin/sogoupinyin_4.2.1.145.1_amd64.deb -O ./$filename        #这里在原PKGBUILD中使用了官网的下载链接。由于无法下载，这里换了星火商店的源
 fi
 echo "解压资源中"
 echo "使用 bsdtar 解压$filename"
 bsdtar -xf $filename
 mkdir pkg
-pkgdir=pkg
+pkgdir=./pkg
 tar -xJvf ./data.tar.xz -C "$pkgdir"
 find $pkgdir/opt/sogoupinyin/files/{.license,share} -type d -exec chmod 755 {} \;
 find $pkgdir/opt/sogoupinyin/files/{.license,share} -type f -exec chmod 644 {} \;
@@ -64,7 +64,7 @@ sudo chmod 777 /etc/profile
 echo "正在备份/etc/profile"
 sudo cp /etc/profile ~/profile.bak         #将准备要修改的/etc/profile备份到home目录下的profile.bak
 echo "正在配置fcitx"
-sudo echo 'export GTK_IM_MODULE=fcitx' >> /etc/profile
+sudo echo 'export GTK_IM_MODULE=fcitx' >> /etc/profile        #设置环境变量
 sudo echo 'export QT_IM_MODULE=fcitx' >> /etc/profile
 sudo echo 'export XMODIFIERS=@im=fcitx' >> /etc/profile
 echo "正在复制与链接共享库..."
@@ -87,8 +87,8 @@ sudo chmod 777 /bin/sogoupinyin-uninstall
 echo "创建完成"
 echo "您可以使用sogoupinyin-uninstall命令进行卸载"
 echo "正在清除安装后无用的文件"
-rm sogou*.deb
-rm -rf pkg
+rm ./sogou*.deb
+rm -rf ./pkg
 rm ./*.tar.*z
 rm ./debian-*
 if [[ "$redhatsys" == "3" ]]; then
@@ -105,7 +105,7 @@ if [[ "$isreboot" == "1" ]]; then
 elif [[ "$isreboot" == "2" ]]; then
 	echo "请在合适的时间重启"
 else
-	echo "请输入合适的数字！"
+	echo "请输入正确的数字！"
 	echo "将不会重启"
 fi
 

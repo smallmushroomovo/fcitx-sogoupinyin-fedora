@@ -19,6 +19,10 @@ if [[ "$uninstall" == "y" ]]; then
       sudo dnf remove fcitx fcitx-qt5 kcm-fcitx libXScrnSaver qt5-qtsvg qt5-qtdeclarative libidn fcitx-configtool gsettings-qt libgsettings-qt unique
    else
       echo "不删除依赖"
+      echo "正在关闭fcitx.."
+      pkill fcitx
+   fi
+
    echo "卸载完成，请重启以应用更改"
 else
    exit

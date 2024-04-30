@@ -31,13 +31,13 @@ else
     sudo $pkgmanager -y install lsb-release libXScrnSaver gsettings-qt qt5-qtsvg qt5-qtdeclarative libidn bsdtar
 fi
 
-read -p "是否卸载ibus？如果不卸载，可能会发生冲突" removeibus
-if [[ "$removeibus" == "y" ]]; then
-	sudo $pkgmanager -y remove ibus
-	echo "卸载完成"
-else
+read -p "是否卸载ibus？如果不卸载，可能会发生冲突(Y/n)" removeibus
+if [[ "$removeibus" == "n" ]]; then
 	echo "不卸载ibus"
 	echo "如有任何问题请自行承担！"
+else
+	echo "正在卸载ibus..."
+	sudo $pkgmanager -y remove ibus
 fi
 echo "下载资源中..."
 if [[ -f ./$filename ]]; then

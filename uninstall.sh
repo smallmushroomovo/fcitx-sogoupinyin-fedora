@@ -25,7 +25,8 @@ if [[ "$uninstall" == "y" ]]; then
       echo "正在关闭fcitx.."
       pkill fcitx
    fi
-
+   echo "正在尝试清理无用文件..."
+   sudo rm /bin/sogoupinyin-uninstall
    echo "卸载完成!"
    echo "是否重启？"
    echo "1) 是，我想立即重启"

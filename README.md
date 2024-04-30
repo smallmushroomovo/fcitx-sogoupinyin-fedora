@@ -2,9 +2,10 @@
 ## 这是什么？
 在RHEL/Fedora上安装搜狗输入法的Shell Script(基于[fcitx-sogoupinyin AUR包](https://aur.archlinux.org/packages/fcitx-sogoupinyin)的PKGBUILD修改)
 ## 如何安装？
- - 首先尝试更新系统
+ - 首先检查系统是否为最新
 ```bash
-sudo yum -y upgrade --nobest   #这里使用nobest参数是防止依赖问题导致更新失败
+sudo yum -y upgrade --nobest   #RHEL
+sudo dnf -y upgrade --nobest   #Fedora
 ```
  - 然后安装git，并克隆仓库
 ```bash

@@ -1,6 +1,6 @@
 ## fcitx-sogoupinyin on RHEL/Fedora
 ## 这是什么？
-在RHEL/Fedora上安装搜狗输入法的Shell Script(基于[fcitx-sogoupinyin AUR包](https://aur.archlinux.org/packages/fcitx-sogoupinyin)的PKGBUILD修改)
+在RHEL/Fedora上安装搜狗输入法的脚本程序(部分代码来自于[fcitx-sogoupinyin AUR包](https://aur.archlinux.org/packages/fcitx-sogoupinyin))
 ## 如何安装？
  - 首先检查系统是否为最新
 ```bash
@@ -23,6 +23,8 @@ bash ./install.sh
 ```bash
 sogoupinyin-uninstall    #请不要以root身份或使用sudo运行！这可能会导致系统灾难性的损坏！
 ```
+## 这个脚本有什么缺点
+ - 这个脚本并没有起到将搜狗输入法打包为rpm包的作用，而是直接复制到目标安装目录下
 ## 具体支持什么系统？
  - Fedora 39:能正确地安装输入法与依赖
  - Fedora 40:未测试，理论上能够正常工作
@@ -33,7 +35,7 @@ sogoupinyin-uninstall    #请不要以root身份或使用sudo运行！这可能�
 ## License
 [MIT License](https://github.com/SmallMushroom-offical/fcitx-sogoupinyin-rhel/blob/main/LICENSE)
 ## 声明
-本程序仅对于搜狗输入法的deb包做了相关处理以在RedHat/Fedora上安装，对于搜狗输入法本身没有任何修改
+本程序仅对搜狗输入法linux解包，对于搜狗输入法本身没有任何修改
 ## 注意事项
  - 请不要以root身份或使用sudo运行安装脚本或卸载脚本！这可能导致系统灾难性的损坏(旧版本不受影响)！
  - 该方法无法使用包管理器进行管理！因此您只能使用sogoupinyin-uninstall命令进行卸载

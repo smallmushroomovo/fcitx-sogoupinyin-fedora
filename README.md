@@ -1,17 +1,25 @@
 ## fcitx-sogoupinyin on RHEL/Fedora
+搜狗输入法疑似无法在GNOME环境下运行，因此该脚本仅适用于其他Fedora Spins与一些不使用GNOME的Fedora衍生版
 ## 这是什么？
-在RHEL/Fedora上安装搜狗输入法的脚本程序(部分代码来自于[fcitx-sogoupinyin AUR包](https://aur.archlinux.org/packages/fcitx-sogoupinyin))
+在RHEL/Fedora上安装搜狗输入法的脚本程序(部分命令来自于[fcitx-sogoupinyin](https://aur.archlinux.org/packages/fcitx-sogoupinyin))
 ## 如何安装？
  - 首先检查系统是否为最新
+ - RHEL
 ```bash
-sudo yum -y upgrade --nobest   #RHEL
-sudo dnf -y upgrade --nobest   #Fedora
+sudo yum -y upgrade --nobest
+```
+ - Fedora
+```bash
+sudo dnf -y upgrade --nobest
 ```
  - 然后安装git，并克隆仓库
 ```bash
 sudo yum -y install git
-git clone https://github.com/SmallMushroom-offical/fcitx-sogoupinyin-rhel.git
-git clone https://mirror.ghproxy.com/https://github.com/SmallMushroom-offical/fcitx-sogoupinyin-rhel.git   ##镜像
+git clone https://github.com/SmallMushroom-offical/fcitx-sogoupinyin-fedora.git
+```
+ - 在中国，你有时可能无法使用以上链接，请使用镜像
+```bash
+git clone https://mirror.ghproxy.com/https://github.com/SmallMushroom-offical/fcitx-sogoupinyin-fedora.git
 ```
  - 运行脚本
 ```bash
@@ -21,24 +29,23 @@ bash ./install.sh
 ```
 ## 如何卸载？
 ```bash
-sogoupinyin-uninstall    #请不要以root身份或使用sudo运行！这可能会导致系统灾难性的损坏！
+sogoupinyin-uninstall    #请不要以root身份(即使用sudo运行)！这可能会导致系统灾难性的损坏！
 ```
 ## 这个脚本有什么缺点
- - 这个脚本并没有起到将搜狗输入法打包为rpm包的作用，而是直接复制到目标安装目录下
+ - 该脚本用了一个*十分取巧*的方法进行安装，因此无法使用包管理器进行操作
 ## 具体支持什么系统？
- - Fedora 39:能正确地安装输入法与依赖
- - Fedora 40:未测试，理论上能够正常工作
- - Red Hat Enterprise Linux 8/CentOS Linux 8/Rocky Linux 8/Alma Linux 8:能正确地安装输入法与依赖(部分依赖来自于其它操作系统的源，但能正常工作)
+ - Fedora 39(在KDE Plasma Spin上测试):能正确地安装输入法与依赖
+ - Fedora 40(在Cinnamon Spin上测试):能正确地安装输入法与依赖，但输入法图标丢失
+ - Red Hat Enterprise Linux 8/CentOS Linux 8/Rocky Linux 8/Alma Linux 8(在Alma Linux 8.9 KDE Plasma上测试):能正确地安装输入法与依赖(部分依赖来自于其它操作系统的源，但能正常工作)
  - Red Hat Enterprise Linux 7/CentOS Linux 7:理论上支持，未测试
  - Red Hat Enterprise Linux 9/Rocky Linux 9/Alma Linux 9:由于epel 9中没有fcitx及相关组件，无法正常安装
  - CentOS Stream:未知
+ - Fedora Rawhide:未测试，但可能需要手动安装X11会话
 ## License
 [MIT License](https://github.com/SmallMushroom-offical/fcitx-sogoupinyin-rhel/blob/main/LICENSE)
 ## 声明
 本程序仅对搜狗输入法linux解包，对于搜狗输入法本身没有任何修改
 ## 注意事项
- - 请不要以root身份或使用sudo运行安装脚本或卸载脚本！这可能导致系统灾难性的损坏(旧版本不受影响)！
- - 该方法无法使用包管理器进行管理！因此您只能使用sogoupinyin-uninstall命令进行卸载
  - 安装时必须联网（这是当然）
  - 如果无法下载搜狗输入法deb包，请前往[官网](https://shurufa.sogou.com/linux)下载并复制到脚本目录
- - 搜狗输入法不支持在Wayland下运行（这是搜狗输入法与fcitx本身的问题！），如果安装成功后输入法面板闪烁，请将桌面会话更改为X11 
+ - 搜狗输入法不支持在Wayland下运行（这是搜狗输入法与fcitx本身的问题！），如果安装成功后输入法面板闪烁，请将桌面会话更改为X11

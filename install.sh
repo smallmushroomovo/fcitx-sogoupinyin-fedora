@@ -1,4 +1,9 @@
 #!/bin/bash
+# shellcheck disable=SC2129
+# shellcheck disable=SC2024
+# shellcheck disable=SC2034
+# shellcheck disable=SC2162
+# shellcheck disable=SC2086
 pkgname=fcitx-sogoupinyin
 pkgver=4.2.1.145
 filename=${pkgname:6}_${pkgver}_amd64.deb
@@ -6,6 +11,25 @@ echo "1.Fedora"
 echo "2.Red Hat Enterprise Linux 7/CentOS 7（未经测试）"
 echo "3.Red Hat Enterprise Linux 8/CentOS 8(Stream)/Rocky Linux 8/Alma Linux 8"
 read -p "请选择您的系统：" redhatsys
+if [ "$(ibus --version)" ]; then
+    checkibus=0
+else
+    checkibus=1
+fi
+if [ "$(fcitx5 --version)" ]; then
+    checkfcitx5=0
+else
+    checkfcitx5=1
+fi
+if [ "$checkibus" = "0" ]; then
+    echo "检测到fcitx5，需要卸载！"
+    read -p "请按回车键继续" uninstallfcitx5
+    sudo dnf remove fcitx5*
+elif [ "$checkibus" = "0" ]; then
+    echo "检测到ibus，需要卸载！"
+    read -p "请按回车键继续" uninstallibus
+    sudo dnf remove ibus*
+fi
 echo "正在尝试安装依赖"
 if [[ "$redhatsys" == "3" ]]; then
     pkgmanager=yum
@@ -29,15 +53,6 @@ else
     pkgmanager=dnf
     sudo $pkgmanager -y install fcitx fcitx-qt5 fcitx-configtool
     sudo $pkgmanager -y install lsb-release libXScrnSaver gsettings-qt qt5-qtsvg qt5-qtdeclarative libidn bsdtar
-fi
-
-read -p "是否卸载ibus？如果不卸载，可能会发生冲突(Y/n)" removeibus
-if [[ "$removeibus" == "n" ]]; then
-	echo "不卸载ibus"
-	echo "如有任何问题请自行承担！"
-else
-	echo "正在卸载ibus..."
-	sudo $pkgmanager -y remove ibus
 fi
 echo "下载资源中..."
 if [[ -f ./$filename ]]; then
@@ -64,7 +79,7 @@ sudo chmod 777 /etc/profile
 echo "正在备份/etc/profile"
 sudo cp /etc/profile ~/profile.bak         #将准备要修改的/etc/profile备份到home目录下的profile.bak
 echo "正在配置fcitx"
-sudo echo 'export GTK_IM_MODULE=fcitx' >> /etc/profile        #设置环境变量
+sudo echo 'export GTK_IM_MODULE=fcitx' >> /etc/profile     #设置环境变量
 sudo echo 'export QT_IM_MODULE=fcitx' >> /etc/profile
 sudo echo 'export XMODIFIERS=@im=fcitx' >> /etc/profile
 echo "正在复制与链接共享库..."

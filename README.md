@@ -33,6 +33,7 @@ sogoupinyin-uninstall    #请不要以root身份(即使用sudo运行)！这可�
 ```
 ## 这个脚本有什么缺点
  - 该脚本用了一个*十分取巧*的方法进行安装，因此无法使用包管理器进行操作
+ - 该脚本没有像[fcitx-sogoupinyin](https://aur.archlinux.org/packages/fcitx-sogoupinyin)那样检查文件完整性，如有需要请自行检查
 ## 具体支持什么系统？
  - Fedora 39(在KDE Plasma Spin上测试):能正确地安装输入法与依赖
  - Fedora 40(在Cinnamon Spin上测试):能正确地安装输入法与依赖，但输入法图标丢失

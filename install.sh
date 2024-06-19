@@ -11,17 +11,17 @@ echo "1.Fedora"
 echo "2.Red Hat Enterprise Linux 7/CentOS 7（未经测试）"
 echo "3.Red Hat Enterprise Linux 8/CentOS 8(Stream)/Rocky Linux 8/Alma Linux 8"
 read -p "请选择您的系统：" redhatsys
-if [ "$(ibus --version)" ]; then
+if [ "$(ibus version)" ]; then
     checkibus=0
 else
     checkibus=1
 fi
-if [ "$(fcitx5 --version)" ]; then
+if [ "$(fcitx5)" ]; then
     checkfcitx5=0
 else
     checkfcitx5=1
 fi
-if [ "$checkibus" = "0" ]; then
+if [ "$checkfcitx5" = "0" ]; then
     echo "检测到fcitx5，需要卸载！"
     read -p "请按回车键继续" uninstallfcitx5
     sudo dnf remove fcitx5*

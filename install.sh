@@ -69,22 +69,19 @@ sudo cp -r $pkgdir/opt/* /opt
 sudo chmod 777 /etc/profile
 echo "正在备份/etc/profile"
 sudo cp /etc/profile ~/profile.bak         #将准备要修改的/etc/profile备份到home目录下的profile.bak
-echo "正在配置fcitx"
+echo "正在设置环境变量"
 sudo echo 'export GTK_IM_MODULE=fcitx' >> /etc/profile     #设置环境变量
 sudo echo 'export QT_IM_MODULE=fcitx' >> /etc/profile
 sudo echo 'export XMODIFIERS=@im=fcitx' >> /etc/profile
+sudo echo 'export SDL_IM_MODULE=fcitx' >> /etc/profile
+sudo echo 'export INPUT_METHOD=fcitx' >> /etc/profile
+sudo echo 'export GLFW_IM_MODULE=fcitx' >> /etc/profile
 echo "正在复制与链接共享库..."
 sudo cp /usr/lib/x86_64-linux-gnu/fcitx/fcitx-sogoupinyin.so /usr/lib64/fcitx
 if [[ -f "/usr/lib64/fcitx-punc-ng.so" ]]; then
     echo "$(gettext "找到 ")" "/usr/lib64/fcitx-punc-ng.so ，无需链接"
 else
     sudo ln -s /usr/lib/x86_64-linux-gnu/fcitx/fcitx-punc-ng.so /usr/lib64/fcitx-punc-ng.so
-fi
-
-if [[ -f "/usr/lib64/libidn.so.11" ]]; then
-    echo "$(gettext "找到 ")" "/usr/lib64/libidn.so.11 ，无需链接"
-else
-    sudo ln -s /usr/lib64/libidn.so.12 /usr/lib64/libidn.so.11
 fi
 echo "正在链接卸载脚本..."
 cp ./uninstall.sh ~/sogoupinyin-uninstall.sh

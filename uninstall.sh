@@ -7,7 +7,6 @@ if [[ "$uninstall" == "y" ]]; then
    sudo rm /usr/lib/x86_64-linux-gnu/fcitx/fcitx-sogou*.so
    echo "正在删除fcitx-sogoupinyin..."
    sudo rm -rf /etc/X11/Xsession.d/72sogoupinyinsogouimebs
-   sudo rm -rf /etc/xdg/autostart/*.desktop
    sudo rm -rf /opt/sogoupinyin/*
    sudo rm /usr/share/applications/sogoupinyin*.desktop
    sudo rm -rf /usr/share/doc/sogoupinyin/

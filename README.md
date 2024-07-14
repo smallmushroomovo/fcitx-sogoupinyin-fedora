@@ -40,7 +40,7 @@ sogoupinyin-uninstall    #请不要以root身份(即使用sudo运行)！这可�
  - 该脚本没有像[fcitx-sogoupinyin](https://aur.archlinux.org/packages/fcitx-sogoupinyin)那样检查文件完整性，如有需要请自行检查
 ## 具体支持什么系统？
  - Fedora 39:能正确地安装输入法与依赖
- - Fedora 40:能正确地安装输入法与依赖~~，但输入法图标可能会丢失~~
+ - Fedora 40:能正确地安装输入法与依赖，但输入法图标可能会丢失
  - Red Hat Enterprise Linux 8/CentOS Linux 8/Rocky Linux 8/Alma Linux 8(在Alma Linux 8.9中测试):能正确地安装输入法与依赖(部分依赖来自于其它操作系统的源，但能正常工作)
  - Red Hat Enterprise Linux 7/CentOS Linux 7:理论上支持，未测试
  - Red Hat Enterprise Linux 9/Rocky Linux 9/Alma Linux 9:由于epel 9中没有fcitx及相关组件，无法正常安装

@@ -1,8 +1,8 @@
 ## fcitx-sogoupinyin on RHEL/Fedora
 ---
 
->该项目已支持rpm打包，此分支不再维护
->仅留档作用
+>该项目已支持rpm打包，此分支不再维护。
+>仅作留档作用
 
 ---
 在RHEL/Fedora上安装搜狗输入法的脚本程序

@@ -32,7 +32,7 @@ sudo dnf remove fcitx-sogoupinyin    #此过程中可能会自动删除依赖(�
 ```
 ## 系统支持
  - Fedora 39:能正确地安装输入法与依赖
- - Fedora 40:能正确地安装输入法与依赖~~，但输入法图标可能会丢失~~
+ - Fedora 40:能正确地安装输入法与依赖
  - Red Hat Enterprise Linux/CentOS(Stream)/Oracle Linux/Rocky Linux/Alma Linux:[见此](https://github.com/SmallMushroom-offical/fcitx-sogoupinyin-fedora/blob/rpmbuild-sogoupinyin/about-rhel.md)
  - Fedora Rawhide:未测试，但可能需要手动安装X11会话
 ## License

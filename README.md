@@ -53,5 +53,5 @@ sogoupinyin-uninstall    #请不要以root身份(即使用sudo运行)！这可�
 ## 注意事项
  - 安装时必须联网（这是当然）
  - 如果无法下载搜狗输入法deb包，请前往[官网](https://shurufa.sogou.com/linux)下载并复制到脚本目录
- - 在GNOME环境下可能无法在gtk4/libadwaita程序中输入
+ - 无法在gtk4/libadwaita程序中输入
  - 搜狗输入法不支持在Wayland下运行（这是搜狗输入法本身的问题！），如果安装成功后输入法面板闪烁，请将桌面会话更改为X11/Xorg

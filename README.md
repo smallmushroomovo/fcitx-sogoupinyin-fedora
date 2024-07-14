@@ -41,7 +41,7 @@ sudo dnf remove fcitx-sogoupinyin    #此过程中可能会自动删除依赖(�
 ## License
 [MIT License](https://github.com/SmallMushroom-offical/fcitx-sogoupinyin-rhel/blob/main/LICENSE)
 ## 免责声明
-本程序仅对搜狗输入法linux解包安装，对于搜狗输入法本身没有任何修改
+本项目仅对搜狗输入法linux重新打包，对于搜狗输入法本身没有任何修改
 ## 注意事项
  - 请在构建时联网以下载构建需要的资源
  - 在GNOME环境下可能无法在gtk4/libadwaita程序中输入
